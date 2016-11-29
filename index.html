@@ -9,9 +9,6 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -23,11 +20,96 @@
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+			<div id="slides" class="slides"></div>
 		</div>
+
+		<script>
+			var images = [
+				{
+					name: 'London',
+					imageName: 'london',
+					images: 40
+				},
+				{
+					name: 'Start',
+					imageName: 'start',
+					images: 23
+				},
+				{
+					name: 'West Europe',
+					imageName: 'westEurope',
+					images: 44
+				},
+				{
+					name: 'East Europe',
+					imageName: 'eastEurope',
+					images: 84
+				},
+				{
+					name: 'Turkey',
+					imageName: 'turkey',
+					images: 102
+				},
+				{
+					name: 'Iran',
+					imageName: 'iran',
+					images: 85
+				},
+				{
+					name: 'Turkmenistan',
+					imageName: 'turkmenistan',
+					images: 19
+				},
+				{
+					name: 'Uzbekistan',
+					imageName: 'uzbekistan',
+					images: 21
+				},
+				{
+					name: 'Tajikistan',
+					imageName: 'tajikistan',
+					images: 149
+				},
+				{
+					name: 'Krygyzstan',
+					imageName: 'krygyzstan',
+					images: 16
+				},
+				{
+					name: 'Mongolia',
+					imageName: 'mongolia',
+					images: 85
+				}
+			];
+			images.forEach(function(image){
+				var section = document.createElement('section');
+
+				var firstSection = document.createElement('section');
+				firstSection.setAttribute('data-background-image', 'images/' + image.imageName + '/' + getRandomInt(0, image.images) + '.jpg');
+				firstSection.setAttribute('data-background-size', 'contain');
+				var firstTitle = document.createElement('h1');
+				firstTitle.appendChild(document.createTextNode(image.name));
+				firstSection.appendChild(firstTitle);
+				section.appendChild(firstSection);
+
+				for(var i = 1; i < image.images; i++){
+					var imageSection = document.createElement('section');
+					imageSection.setAttribute('data-background-image', 'images/' + image.imageName + '/' + i + '.jpg');
+					imageSection.setAttribute('data-background-size', 'contain');
+					section.appendChild(imageSection);
+				}
+
+				slides.appendChild(section)
+			});
+
+			function getRandomInt(min, max) {
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+
+
+		</script>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -37,12 +119,8 @@
 			Reveal.initialize({
 				history: true,
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/zoom-js/zoom.js', async: true }
 				]
 			});
 		</script>
