@@ -10,14 +10,13 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		<style>
+			.reveal {
+				touch-action: inherit !important;
+				-ms-touch-action: inherit !important;
+			}
+		</style>
+
 	</head>
 	<body>
 		<div class="reveal">
@@ -97,6 +96,9 @@
 					var imageSection = document.createElement('section');
 					imageSection.setAttribute('data-background-image', 'images/' + image.imageName + '/' + i + '.jpg');
 					imageSection.setAttribute('data-background-size', 'contain');
+					imageSection.addEventListener('dblclick', function(){
+
+					});
 					section.appendChild(imageSection);
 				}
 
@@ -119,6 +121,8 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
+
+				overview: false,
 
 				dependencies: [
 					{ src: 'plugin/zoom-js/zoom.js', async: true }
